@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ITAcademy.dto.Game;
 import com.ITAcademy.service.GameServiceImpl;
 
+
+
 @RestController
 @RequestMapping("/api")
 public class GameController {
@@ -33,22 +35,22 @@ public class GameController {
 	}
 	
 	@GetMapping("/game/{id}")
-	public Game gameXID(@PathVariable(name="idGame")Long idGame) {
+	public Game gameXID(@PathVariable(name="id")Long id) {
 		Game game_xid= new Game();
-		game_xid=gameServiceImpl.gameXID(idGame);
+		game_xid=gameServiceImpl.gameXID(id);
 		System.out.println("Game XID: " +game_xid);
 		return game_xid;
 	}
 	
 	@PutMapping("/game/{id}")
-	public Game updateGame(@PathVariable(name="idGame")Long idGame,@RequestBody Game game) {
+	public Game updateGame(@PathVariable(name="id")Long id,@RequestBody Game game) {
 		Game game_selected = new Game();
 		Game game_updated = new Game();
 		
-		game_selected = gameServiceImpl.gameXID(idGame);
+		game_selected = gameServiceImpl.gameXID(id);
 		
-		game_selected.setDiceOne(game.getDiceOne());
-		game_selected.setDiceTwo(game.getDiceTwo());
+		game_selected.setone(game.getone());
+		game_selected.settwo(game.gettwo());
 		game_selected.setScore(game.getScore());
 		
 		game_updated = gameServiceImpl.updateGame(game_selected);
@@ -57,7 +59,7 @@ public class GameController {
 	}
 	
 	@DeleteMapping("/game/{id}")
-	public void eliminateGame(@PathVariable(name="idGame")Long idGame) {
-		gameServiceImpl.eliminateGame(idGame);
+	public void eliminateGame(@PathVariable(name="id")Long id) {
+		gameServiceImpl.eliminateGame(id);
 	}
 }

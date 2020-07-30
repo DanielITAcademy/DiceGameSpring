@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ITAcademy.dao.IGameDAO;
 import com.ITAcademy.dto.Game;
 
+
 @Service
 public class GameServiceImpl implements IGameService{
 	
@@ -26,8 +27,8 @@ public class GameServiceImpl implements IGameService{
 	}
 
 	@Override
-	public Game gameXID(Long idGame) {
-		return igameDAO.findById(idGame).get();
+	public Game gameXID(Long id) {
+		return igameDAO.findById(id).get();
 		
 	}
 	
@@ -37,7 +38,7 @@ public class GameServiceImpl implements IGameService{
 	}
 	
 	@Override
-	public void eliminateGame(Long idGame) {
-		igameDAO.deleteById(idGame);
+	public void eliminateGame(Long id) {
+		igameDAO.deleteById(id);
 	}
 }

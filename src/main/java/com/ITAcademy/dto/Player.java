@@ -5,12 +5,15 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="player")
@@ -19,95 +22,147 @@ public class Player {
 	//Atributos de entidad player
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//Busca ultimo valor e incrementa el id
-	private Long idPlayer;
-	@Column(name = "namePlayer" )
-	private String namePlayer;
-	@Column(name = "dateOfRegister")
-	private Date dateOfRegister;
+	private Long id;
+	@Column(name = "name" )
+	private String name;
+	@Column(name = "date")
+	private Date date;
+	@Column(name ="points")
+	private int points;
+	@Column(name ="ranking")
+	private int ranking;
+	@Column(name="totalgames")
+	private int totalgames;
+	@Column(name="wingames")
+	private int wingames;
+	@Column(name="average")
+	private double average;
 	
 	@OneToMany
-	@JoinColumn(name="idPlayer")
+	@JoinColumn(name="id")
 	private List<Game> game;
 	
 	//Constructores
+	
 	public Player(){
 		
 	}
 
 	/**
-	 * @param idPlayer
-	 * @para namePlayer
-	 * @param dateOfRegister
+	 * @param id
+	 * @para name
+	 * @param date
 	 */
 
-	public Player(Long idPlayer, String namePlayer, Date dateOfRegister, List<Game> game) {
+	public Long getid() {
+		return id;
+	}
+
+	public Player(Long id, String name, Date date, int points, int ranking, int totalgames, int wingames,
+			double average, List<Game> game) {
 		//super();
-		this.idPlayer = idPlayer;
-		this.namePlayer = namePlayer;
-		this.dateOfRegister = dateOfRegister;
+		this.id = id;
+		this.name = name;
+		this.date = date;
+		this.points = points;
+		this.ranking = ranking;
+		this.totalgames = totalgames;
+		this.wingames = wingames;
+		this.average = average;
 		this.game = game;
 	}
 
 	//Getters y Setters
 	
-	/**
-	 * @return the id
-	 */
-	public Long getIdPlayer() {
-		return idPlayer;
+	public void setid(Long id) {
+		this.id = id;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setIdPlayer(Long idPlayer) {
-		this.idPlayer = idPlayer;
-	}
-	/**
-	 * @return the namePlayer
-	 */
-	public String getNamePlayer() {
-		return namePlayer;
+	public String getname() {
+		return name;
 	}
 
-	/**
-	 * @param nombre the namePlayer to set
-	 */
-	public void setNamePlayer(String namePlayer) {
-		this.namePlayer = namePlayer;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public Date getDateOfRegister() {
-		return dateOfRegister;
-	}
-	/**
-	 * @param date the dateOfRegister to set
-	 */
-	public void setDateOfRegister(Date dateOfRegister) {
-		this.dateOfRegister = dateOfRegister;
+	public Date getDate() {
+		return date;
 	}
 
-	/**
-	 * @return the Game
-	 */
+	public void setdate(Date date) {
+		this.date = date;
+	}
+	@JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "Game")
 	public List<Game> getGame() {
 		return game;
 	}
-	/**
-	 * @param game the game to set
-	 */
+
 	public void setGame(List<Game> game) {
 		this.game = game;
 	}
 
 	
-	//Metodo impresion de datos por consola
-	
+	public int getPoints() {
+		return points;
+	}
 
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public int getRanking() {
+		return ranking;
+	}
+
+	public void setRanking(int ranking) {
+		this.ranking = ranking;
+	}
+
+	public int getTotalgames() {
+		return totalgames;
+	}
+
+	public void setTotalgames(int totalgames) {
+		this.totalgames = totalgames;
+	}
+
+	public int getWingames() {
+		return wingames;
+	}
+
+	public void setWingames(int wingames) {
+		this.wingames = wingames;
+	}
+	
+	public double getAverage() {
+		return average;
+	}
+
+	public void setAverage(double average) {
+		this.average = average;
+	}
+
+	//impresión de datos por consola
+	
 	@Override
 	public String toString() {
-		return "Player [idPlayer=" + idPlayer + ", namePlayer=" + namePlayer + ", dateOfRegister=" + dateOfRegister + "]";
+		return "Player [id=" + id + ", name=" + name + ", date=" + date + ", points=" + points + ", ranking=" + ranking
+				+ ", totalgames=" + totalgames + ", wingames=" + wingames + ", average=" + average + ", game=" + game
+				+ "]";
 	}
-}
+
+	
+	}
+
+	
+	
+	
+
+	
+	
+	
+
 	
 	

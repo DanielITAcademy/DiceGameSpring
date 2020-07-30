@@ -17,16 +17,16 @@ public class Game {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//Busca último valor e incrementa id última
-	private Long idGame;
-	@Column(name = "diceOne")
-	private int diceOne;
-	@Column(name = "diceTwo")
-	private int diceTwo;
+	private Long id;
+	@Column(name = "one")
+	private int one;
+	@Column(name = "two")
+	private int two;
 	@Column(name = "score")
 	private int score;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_player")
+	@JoinColumn(name = "player_id")
 	private Player player;
 	
 	//Constructores
@@ -35,61 +35,60 @@ public class Game {
 	}
 	/**
 	 * @param id
-	 * @param diceOne
-	 * @param diceTwo
+	 * @param one
+	 * @param two
 	 * @param score
 	 * @param player
 	 
 	 */
 
-	public Game(Long idGame, int diceOne, int diceTwo, int score, Player player) {
+	public Game(Long id, int one, int two, int score, Player player) {
 		//super();
-		this.idGame = idGame;
-		this.diceOne = diceOne;
-		this.diceTwo = diceTwo;
+		this.id = id;
+		this.one = one;
+		this.two = two;
 		this.score = score;
 		this.player = player;
 	}
 	//Getters y Setters
-			/**
-			 * @return the id
-			 */
-	public Long getIdGame() {
-		return idGame;
-	}
-	public void setId(Long idGame) {
-		this.idGame = idGame;
-	}
+			
 	
-	public int getDiceOne() {
-		return diceOne;
+	public Long getid() {
+		return id;
 	}
-	public void setDiceOne(int diceOne) {
-		this.diceOne = diceOne;
+	public void setid(Long id) {
+		this.id = id;
 	}
-	public int getDiceTwo() {
-		return diceTwo;
+	public int getone() {
+		return one;
 	}
-	public void setDiceTwo(int diceTwo) {
-		this.diceTwo = diceTwo;
+	public void setone(int one) {
+		this.one = one;
+	}
+	public int gettwo() {
+		return two;
+	}
+	public void settwo(int two) {
+		this.two = two;
 	}
 	public int getScore() {
+		
 		return score;
 	}
 	public void setScore(int score) {
 		this.score = score;
 	}
-	public Player getidPlayer() {
+	public Player getPlayer() {
 		return player;
 	}
-	public void setidPlayer(Player player) {
+	public void setPlayer(Player player) {
 		this.player = player;
 	}
-	//Metodo impresion de datos por consola
+	
+	//impresión de datos por consola
 	@Override
 	public String toString() {
-		return "Game [idGame=" + idGame + ", diceOne=" + diceOne + ", diceTwo=" + diceTwo + ", score=" + score + ", player="
-				+ player + "]";
+		return "Game [id=" + id + ", one=" + one + ", two=" + two + ", score=" + score + ", player=" + player + "]";
 	}
 	
 }
